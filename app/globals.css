@@ -1,0 +1,49 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-space-grotesk), var(--font-inter), ui-sans-serif,
+    system-ui, sans-serif;
+}
+
+:root {
+  color-scheme: light;
+}
+
+body {
+  @apply bg-white text-slate-900 antialiased;
+}
+
+/* Frosted-glass surface used for sticky bars and floating cards */
+.glass {
+  @apply bg-white/75 backdrop-blur-xl;
+}
+
+/* Soft teal glow for hero elements and primary CTAs */
+.glow-teal {
+  box-shadow:
+    0 0 0 1px rgb(13 148 136 / 0.08),
+    0 10px 40px -10px rgb(13 148 136 / 0.35);
+}
+
+/* Subtle mesh background for hero sections */
+.mesh-teal {
+  background:
+    radial-gradient(at 15% 20%, rgb(204 251 241 / 0.9) 0px, transparent 45%),
+    radial-gradient(at 85% 10%, rgb(207 250 254 / 0.8) 0px, transparent 45%),
+    radial-gradient(at 60% 85%, rgb(240 253 250 / 0.9) 0px, transparent 50%),
+    #ffffff;
+}
+
+/* Thin scrollbars for horizontal chip rows */
+.scroll-thin {
+  scrollbar-width: thin;
+  scrollbar-color: rgb(153 246 228) transparent;
+}
+.scroll-thin::-webkit-scrollbar {
+  height: 6px;
+}
+.scroll-thin::-webkit-scrollbar-thumb {
+  border-radius: 9999px;
+  background: rgb(153 246 228);
+}
