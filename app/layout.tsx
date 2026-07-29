@@ -4,6 +4,7 @@ import "./globals.css";
 import { AppStateProvider } from "@/lib/app-state";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import MobileNav from "@/components/MobileNav";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -19,6 +20,7 @@ const spaceGrotesk = Space_Grotesk({
 
 export const viewport: Viewport = {
   themeColor: "#0d9488",
+  viewportFit: "cover",
 };
 
 export const metadata: Metadata = {
@@ -38,11 +40,12 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en-GB" className={`${inter.variable} ${spaceGrotesk.variable}`}>
-      <body className="font-sans min-h-screen flex flex-col">
+      <body className="font-sans min-h-screen flex flex-col pb-[calc(4rem+env(safe-area-inset-bottom))] sm:pb-0">
         <AppStateProvider>
           <Header />
           <main className="flex-1">{children}</main>
           <Footer />
+          <MobileNav />
         </AppStateProvider>
       </body>
     </html>

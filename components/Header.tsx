@@ -28,7 +28,7 @@ export default function Header() {
           </span>
         </Link>
 
-        <nav aria-label="Primary" className="flex items-center gap-1">
+        <nav aria-label="Primary" className="hidden items-center gap-1 sm:flex">
           {NAV.map(({ href, label, icon: Icon }) => {
             const active =
               href === "/" ? pathname === "/" : pathname.startsWith(href);
