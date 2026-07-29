@@ -5,7 +5,12 @@ import StoreBadge from "@/components/StoreBadge";
 import { gbp, minutes } from "@/lib/format";
 import { savingVsSingleStore } from "@/lib/optimiser";
 import type { BasketPlan, OptimiserResult, UserPrefs } from "@/lib/types";
-import { productNames, samePlan, type PlanKey } from "./plan-utils";
+import {
+  PLAN_TITLES,
+  productNames,
+  samePlan,
+  type PlanKey,
+} from "./plan-utils";
 
 const RIBBONS: Record<PlanKey, { label: string; className: string }> = {
   cheapest: { label: "Best price", className: "bg-teal-600 text-white" },
@@ -17,12 +22,6 @@ const RIBBONS: Record<PlanKey, { label: string; className: string }> = {
     label: "Least effort — one stop or delivery",
     className: "bg-cyan-50 text-cyan-800",
   },
-};
-
-const TITLES: Record<PlanKey, string> = {
-  cheapest: "Cheapest",
-  practical: "Practical",
-  convenient: "Convenient",
 };
 
 /** One of the three headline recommendation cards. */
@@ -68,7 +67,7 @@ export default function PlanCard({
         <div>
           <div className="flex flex-wrap items-center gap-2">
             <h3 className="font-display text-xl font-bold tracking-tight text-slate-900">
-              {TITLES[planKey]}
+              {PLAN_TITLES[planKey]}
             </h3>
             {sameAs && (
               <span className="rounded-full border border-slate-200 bg-slate-50 px-2 py-0.5 text-[11px] font-medium text-slate-600">
@@ -179,8 +178,8 @@ export default function PlanCard({
         )}
 
         <div className="mt-auto pt-1">
-          <a
-            href="#shopping-lists"
+          <button
+            type="button"
             onClick={onSelect}
             aria-pressed={selected}
             className={`inline-flex items-center gap-1.5 rounded-full px-4 py-2 text-sm font-semibold transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-teal-600 ${
@@ -191,7 +190,7 @@ export default function PlanCard({
           >
             {selected ? "Shopping list shown below" : "View shopping list"}
             <ArrowDown className="h-4 w-4" aria-hidden />
-          </a>
+          </button>
         </div>
       </div>
     </article>
