@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Inter, Space_Grotesk } from "next/font/google";
 import "./globals.css";
 import { AppStateProvider } from "@/lib/app-state";
@@ -17,7 +17,17 @@ const spaceGrotesk = Space_Grotesk({
   display: "swap",
 });
 
+export const viewport: Viewport = {
+  themeColor: "#0d9488",
+};
+
 export const metadata: Metadata = {
+  applicationName: "BasketWise",
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: "default",
+    title: "BasketWise",
+  },
   title: "BasketWise — the cheapest way to do your whole shop",
   description:
     "Compare live grocery prices across UK supermarkets, build one list, and find the cheapest practical way to complete your entire shop — not just single bargains.",
