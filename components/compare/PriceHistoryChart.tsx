@@ -277,8 +277,11 @@ export default function PriceHistoryChart({
           </div>
         )}
 
-        {/* Table view of the same data for screen readers */}
-        <table className="sr-only">
+        {/* Table view of the same data for screen readers. Wrapped in a div
+            because sr-only cannot shrink a table below its content width,
+            which would stretch the page on small screens. */}
+        <div className="sr-only">
+        <table>
           <caption>
             Monthly cheapest-store price for {productName} (demo data)
           </caption>
@@ -297,6 +300,7 @@ export default function PriceHistoryChart({
             ))}
           </tbody>
         </table>
+        </div>
       </div>
 
       {/* Stats + verdict */}

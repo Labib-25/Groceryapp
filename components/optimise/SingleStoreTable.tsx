@@ -46,12 +46,13 @@ export default function SingleStoreTable({
             const storeId = plan.stores[0];
             const listSize = plan.allocations.length + plan.unavailable.length;
             const short = plan.allocations.length < listSize;
+            const none = plan.allocations.length === 0;
             const isCheapest = plan === cheapest;
             return (
               <tr
                 key={storeId}
                 className={`border-b border-teal-50 last:border-b-0 ${
-                  isCheapest ? "bg-teal-50/70" : "bg-white"
+                  isCheapest ? "bg-teal-50/70" : none ? "bg-slate-50/60" : "bg-white"
                 }`}
               >
                 <td className="px-4 py-3">
@@ -65,7 +66,11 @@ export default function SingleStoreTable({
                   </span>
                 </td>
                 <td className="px-4 py-3">
-                  {short ? (
+                  {none ? (
+                    <span className="text-slate-500">
+                      None of your items stocked
+                    </span>
+                  ) : short ? (
                     <span className="inline-flex items-center gap-1.5 font-semibold text-amber-700">
                       <AlertTriangle className="h-3.5 w-3.5" aria-hidden />
                       {plan.allocations.length} of {listSize}
@@ -77,16 +82,22 @@ export default function SingleStoreTable({
                   )}
                 </td>
                 <td className="px-4 py-3 text-right text-slate-700">
-                  {gbp(plan.productTotalPence)}
+                  {none ? <span aria-label="not applicable">—</span> : gbp(plan.productTotalPence)}
                 </td>
                 <td className="px-4 py-3 text-right text-slate-700">
-                  {gbp(plan.travelPence)}{" "}
-                  <span className="text-xs text-slate-400">
-                    ({minutes(plan.travelMinutes)})
-                  </span>
+                  {none ? (
+                    <span aria-label="not applicable">—</span>
+                  ) : (
+                    <>
+                      {gbp(plan.travelPence)}{" "}
+                      <span className="text-xs text-slate-400">
+                        ({minutes(plan.travelMinutes)})
+                      </span>
+                    </>
+                  )}
                 </td>
                 <td className="px-4 py-3 text-right font-display font-bold tracking-tight text-slate-900">
-                  {gbp(plan.finalPence)}
+                  {none ? <span aria-label="not applicable">—</span> : gbp(plan.finalPence)}
                 </td>
               </tr>
             );

@@ -58,6 +58,23 @@ export default function PlanStoreLists({ plan }: { plan: BasketPlan }) {
             <ul className="divide-y divide-teal-50 border-t border-teal-50 px-4">
               {allocations.map((a) => {
                 const canonical = getProduct(a.productId);
+                // Store product names usually already include the brand and
+                // pack size — only add what's missing, never duplicate.
+                const offerName = a.offer.productName;
+                const lower = offerName.toLowerCase();
+                const sizeLabel = packSize(a.offer.packSize, a.offer.unit);
+                const detail = [
+                  lower.includes(a.offer.brand.toLowerCase())
+                    ? offerName
+                    : `${a.offer.brand} ${offerName}`,
+                  lower
+                    .replace(/\s+/g, "")
+                    .includes(sizeLabel.toLowerCase().replace(/\s+/g, ""))
+                    ? null
+                    : sizeLabel,
+                ]
+                  .filter(Boolean)
+                  .join(", ");
                 return (
                   <li
                     key={a.productId}
@@ -73,8 +90,7 @@ export default function PlanStoreLists({ plan }: { plan: BasketPlan }) {
                         )}
                       </p>
                       <p className="text-xs text-slate-500">
-                        {a.offer.brand} {a.offer.productName},{" "}
-                        {packSize(a.offer.packSize, a.offer.unit)}
+                        {detail}
                         <span className="ml-1.5 text-slate-400">
                           {checkedLabel(a.offer.updatedAt)}
                         </span>
