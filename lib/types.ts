@@ -92,6 +92,12 @@ export interface Store {
   loyaltyScheme?: string; // e.g. "Tesco Clubcard"
   deliveryFeePence?: number; // typical delivery charge
   minBasketPence?: number; // minimum online basket
+  /**
+   * URL of the store's online-shop search with a `{query}` placeholder.
+   * Used to hand the basket off to the retailer's own site for checkout
+   * and delivery booking. Absent = no online shop (in-store only).
+   */
+  searchUrlPattern?: string;
   /** Demo travel model (no real geolocation in v1). */
   milesAway: number;
   travelMinutes: number; // one-way drive estimate

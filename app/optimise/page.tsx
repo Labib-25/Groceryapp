@@ -8,6 +8,7 @@ import DeliveryOptions from "@/components/optimise/DeliveryOptions";
 import OptimiserControls from "@/components/optimise/OptimiserControls";
 import PlanCard from "@/components/optimise/PlanCard";
 import PlanStoreLists from "@/components/optimise/PlanStoreLists";
+import SendToStore from "@/components/optimise/SendToStore";
 import SingleStoreTable from "@/components/optimise/SingleStoreTable";
 import {
   PLAN_TITLES,
@@ -183,6 +184,15 @@ export default function OptimisePage() {
           ))}
         </div>
         <PlanStoreLists plan={selectedPlan} />
+      </section>
+
+      <section className="mt-12">
+        <SectionHeading
+          eyebrow="Nearly there"
+          title="Check out with the stores"
+          description="Send each store's part of your list to its online shop — add the items to your real basket there, book a delivery or collection slot, and pay."
+        />
+        <SendToStore plan={selectedPlan} />
       </section>
 
       <section className="mt-12">
